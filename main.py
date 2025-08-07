@@ -2,6 +2,8 @@
 import pygame # pyright: ignore[reportMissingImports]
 from constants import *
 from player import *
+from asteroid import *
+from asteroidfield import *
 
 def main():
     pygame.init()
@@ -15,18 +17,29 @@ def main():
     print(f"Screen height: {SCREEN_HEIGHT}")
     exit = False
 
+    updateable = pygame.sprite.Group()
+    drawable = pygame.sprite.Group()
+    asteroids = pygame.sprite.Group()
+
+    Player.containers = (updateable, drawable)
+    Asteroid.containers = (asteroids, updateable, drawable)
+    AsteroidField.containers = (updateable) 
+
     player = Player(SCREEN_WIDTH/2, SCREEN_HEIGHT/2, PLAYER_RADIUS)
-    
+    playing_field = AsteroidField()
 
     while exit == False:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 return
         screen.fill("black")
-        player.draw(screen)
+        
+        for shape in drawable:
+            shape.draw(screen)
+
         pygame.display.flip()
         dt = game_time.tick(60)/1000
-        player.update(dt)
+        updateable.update(dt)
 
 
 if __name__ == "__main__":
