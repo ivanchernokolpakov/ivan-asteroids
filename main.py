@@ -1,6 +1,7 @@
 #allows us to use pygame functions
 import pygame
 from constants import *
+from player import *
 
 def main():
     pygame.init()
@@ -14,11 +15,15 @@ def main():
     print(f"Screen height: {SCREEN_HEIGHT}")
     exit = False
 
+    player = Player(SCREEN_WIDTH/2, SCREEN_HEIGHT/2, PLAYER_RADIUS)
+    
+
     while exit == False:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 return
         screen.fill("black")
+        player.draw(screen)
         pygame.display.flip()
         dt = game_time.tick(60)/1000
 
