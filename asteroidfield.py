@@ -1,4 +1,4 @@
-import pygame
+import pygame # pyright: ignore[reportMissingImports]
 import random
 from asteroid import Asteroid
 from constants import *

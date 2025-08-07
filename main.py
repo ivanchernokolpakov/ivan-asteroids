@@ -40,7 +40,10 @@ def main():
         pygame.display.flip()
         dt = game_time.tick(60)/1000
         updateable.update(dt)
-
+        for asteroid in asteroids:
+            if asteroid.collision(player) == True:
+                exit = True
+                print("Game Over!")
 
 if __name__ == "__main__":
     main()
