@@ -1,5 +1,5 @@
 #allows us to use pygame functions
-import pygame
+import pygame # pyright: ignore[reportMissingImports]
 from constants import *
 from player import *
 
@@ -26,6 +26,7 @@ def main():
         player.draw(screen)
         pygame.display.flip()
         dt = game_time.tick(60)/1000
+        player.update(dt)
 
 
 if __name__ == "__main__":
